@@ -2,7 +2,7 @@
 
 A minimalistic movie recommender built with Snowflake and Streamlit. flix.app performs RAG for real-time movie recommendation using `voyage-3-multilingual` text embeddings and [Mistral Large 2](https://mistral.ai/technology/#models), and features in-app watchlist.
 
-![flix.app Main Page](https://github.com/nazlicanto/flix-app/blob/main/assets/main.jpeg "flix.app")
+![flix.app Main Page](https://github.com/nazlicanto/flix-app/blob/main/assets/main.png "flix.app")
 
 
 ### Usage
