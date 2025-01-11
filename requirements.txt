@@ -1,0 +1,7 @@
+snowflake
+snowflake-connector-python==2.8.3
+snowflake-ml-python
+streamlit==1.41.1
+scipy
+datasets
+cinemagoer
