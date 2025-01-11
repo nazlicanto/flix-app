@@ -2,6 +2,8 @@
 
 A minimalistic movie recommender built with Snowflake and Streamlit. flix.app performs RAG for real-time movie recommendation using `voyage-3-multilingual` text embeddings and [Mistral Large 2](https://mistral.ai/technology/#models), and features in-app watchlist.
 
+![flix.app Main Page](https://github.com/nazlicanto/flix-app/blob/main/assets/main.jpeg "flix.app")
+
 
 ### Usage
 Create your own dataset using the [BrightData/IMDb-Media](https://huggingface.co/datasets/BrightData/IMDb-Media) Hugging Face dataset and the [Cinemagoer](https://cinemagoer.readthedocs.io/) library. To create a csv file with all data, except text embeddings:
@@ -24,5 +26,4 @@ To run the Streamlit app, you need to replace the placeholder Snowflake credenti
 streamlit run app.py
 ```
 
-![flix.app Main Page](https://github.com/nazlicanto/flix-app/blob/main/assets/main.jpeg "flix.app")
 
