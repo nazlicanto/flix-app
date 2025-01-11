@@ -24,3 +24,5 @@ To run the Streamlit app, you need to replace the placeholder Snowflake credenti
 streamlit run app.py
 ```
 
+![flix.app Main Page](https://github.com/nazlicanto/flix-app/blob/main/assets/main.jpeg "flix.app")
+
