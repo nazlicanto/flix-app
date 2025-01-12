@@ -4,4 +4,4 @@ scipy
 datasets
 cinemagoer
 snowflake-connector-python>=3.0.3,<4.0.0
-snowflake-ml-python==1.0.2
+snowflake-ml-python>=1.0.2
