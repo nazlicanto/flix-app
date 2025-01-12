@@ -142,24 +142,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-@st.cache_resource
-def get_snowpark_session():
-    try:
-        connection_parameters = {
-            "account": st.secrets['SNOWFLAKE_ACCOUNT'],
-            "user": st.secrets['SNOWFLAKE_USER'],
-            "password": st.secrets['SNOWFLAKE_PASSWORD'],
-            "warehouse": st.secrets['SNOWFLAKE_WAREHOUSE'],
-            "database": st.secrets['SNOWFLAKE_DB'],
-            "schema": st.secrets['SNOWFLAKE_SCHEMA'],
-            "role": st.secrets['SNOWFLAKE_ROLE']
-        }
-        return Session.builder.configs(connection_parameters).create()
-    except Exception as e:
-        st.error(f"Connection error: {str(e)}")
-        return None
-
-
 def find_similar_movies(description, session):
     return session.sql(f"""
         SELECT DISTINCT title, storyline, url, imdb_rating, genres, imdb_id, poster_url, year, top_cast, director,
@@ -395,19 +377,29 @@ def main():
         </div>
     """, unsafe_allow_html=True)
     search_tab, watchlist_tab = st.tabs(["flix.app", "watchlist"])
-    
-    session = get_snowpark_session()
-    if not session:
-        return
 
     with search_tab:
         query = st.text_input("Search for movies:", placeholder="a dark time travel sci-fi with an anti hero")
 
         if query:
+            connection_parameters = {
+                "account": st.secrets['SNOWFLAKE_ACCOUNT'],
+                "user": st.secrets['SNOWFLAKE_USER'],
+                "password": st.secrets['SNOWFLAKE_PASSWORD'],
+                "warehouse": st.secrets['SNOWFLAKE_WAREHOUSE'],
+                "database": st.secrets['SNOWFLAKE_DB'],
+                "schema": st.secrets['SNOWFLAKE_SCHEMA'],
+                "role": st.secrets['SNOWFLAKE_ROLE']
+            }
+            session = Session.builder.configs(connection_parameters).create()
+            
             # Only perform search if query is new
             perform_search(query, session)
             # Display results from session state
             display_search_results()
+
+            # Close snowflake session
+            session.close()
         else:
             # Clear search results when query is empty
             st.session_state.search_results = None
